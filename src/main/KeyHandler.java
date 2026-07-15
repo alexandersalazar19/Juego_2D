@@ -95,7 +95,10 @@ public class KeyHandler implements KeyListener{
             showDebugText=!showDebugText;
         }
         if(code==KeyEvent.VK_R){
-            gp.tileM.loadMap("/maps/map03.txt");
+            switch(gp.currentMap){
+                case 0: gp.tileM.loadMap("/maps/map04.txt",0); break;
+                case 1: gp.tileM.loadMap("/maps/interior01.txt",1); break;
+            }
         }
     }
 
