@@ -1,0 +1,11 @@
+package object;
+import main.GamePanel;
+import entity.Entity;
+
+public class OBJ_Chest extends Entity{
+    public OBJ_Chest(GamePanel gp){
+        super(gp);
+        name="Cofre";
+        down1=setup("/objects/chest",gp.tileSize,gp.tileSize);
+    }
+}
