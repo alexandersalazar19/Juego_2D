@@ -34,11 +34,11 @@ public class Player extends Entity{
     }
 
     public void setDefaultValues(){
-//        worldX=gp.tileSize*23;
-//        worldY=gp.tileSize*21;
-        gp.currentMap=1;
-        worldX=gp.tileSize*12;
-        worldY=gp.tileSize*12;
+        worldX=gp.tileSize*23;
+        worldY=gp.tileSize*21;
+//        gp.currentMap=1;
+//        worldX=gp.tileSize*12;
+//        worldY=gp.tileSize*12;
         speed=4;
         direction="down";
 
@@ -53,7 +53,7 @@ public class Player extends Entity{
         dexterity=1;
         exp=0;
         nextLevelExp=5;
-        coin=0;
+        coin=200;
         currentWeapon=new OBJ_Sword_Normal(gp);
         currentShield=new OBJ_Shield_Wood(gp);
         projectile=new OBJ_Fireball(gp);
