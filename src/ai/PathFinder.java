@@ -13,6 +13,7 @@ public class PathFinder{
 
     public PathFinder(GamePanel gp){
         this.gp=gp;
+        instantiateNodes();
     }
 
     public void instantiateNodes(){
@@ -78,7 +79,92 @@ public class PathFinder{
             }
 
             //SETEAR COSTOS
-            
+            getCost(node[col][row]);
+
+            col++;
+            if(col==gp.maxWorldCol){
+                col=0;
+                row++;
+            }
+        }
+    }
+
+    public void getCost(Node node){
+        //costo G
+        int xDistance=Math.abs(node.col-startNode.col);
+        int yDistance=Math.abs(node.row-startNode.row);
+        node.gCost=xDistance+yDistance;
+        //costo H
+        xDistance=Math.abs(node.col-goalNode.col);
+        yDistance=Math.abs(node.row-goalNode.row);
+        //costo F
+        node.fCost=node.gCost+node.hCost;
+    }
+
+    public boolean search(){
+        while(!goalReached && step<500){
+            int col=currentNode.col;
+            int row=currentNode.row;
+
+            //revisar el nodo actual
+            currentNode.checked=true;
+            openList.remove(currentNode);
+
+            //abrir los nodos vecinos
+            if(row-1>=0){
+                openNode(node[col][row-1]);
+            }
+            if(col-1>=0){
+                openNode(node[col-1][row]);
+            }
+            if(row+1<gp.maxWorldRow){
+                openNode(node[col][row+1]);
+            }
+            if(col+1<gp.maxWorldCol){
+                openNode(node[col+1][row]);
+            }
+
+            //encontrar el mejor vecino (mejor costo F)
+            int bestNodeIndex=0;
+            int bestNodefCost=999;
+            for(int i=0;i<openList.size();i++){
+                if(openList.get(i).fCost<bestNodefCost){
+                    bestNodeIndex=i;
+                    bestNodefCost=openList.get(i).fCost;
+                }else if(openList.get(i).fCost==bestNodefCost){
+                    if(openList.get(i).gCost<openList.get(bestNodeIndex).gCost){
+                        bestNodeIndex=i;
+                    }
+                }
+            }
+
+            //terminar cuando no hayan nodos abiertos
+            if(openList.isEmpty()) break;
+
+            //actualizar el actual al siguiente mejor encontrado
+            currentNode=openList.get(bestNodeIndex);
+            if(currentNode==goalNode){
+                goalReached=true;
+                trackThePath();
+            }
+            step++;
+        }
+        return goalReached;
+    }
+
+    public void openNode(Node node){
+        if(!node.open && !node.checked && !node.solid){
+            node.open=true;
+            node.parent=currentNode;
+            openList.add(node);
+        }
+    }
+
+    public void trackThePath(){
+        Node current=goalNode;
+        while(current!=startNode){
+            pathList.addFirst(current);
+            current=current.parent;
         }
     }
 }
