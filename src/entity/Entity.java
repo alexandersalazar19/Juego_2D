@@ -30,6 +30,7 @@ public class Entity{
     public boolean dying=false;
     boolean hpBarOn=false;
     public boolean onPath=false;
+    public boolean knockBack=false;
 
     //CONTADORES
     public int spriteCounter=0;
@@ -38,9 +39,11 @@ public class Entity{
     public int shotAvailableCounter=0;
     int dyingCounter=0;
     int hpBarCounter=0;
+    int knockBackCounter=0;
 
     //ATRIBUTOS
     public String name;
+    public int defaultSpeed;
     public int speed;
     public int maxLife;
     public int life;
@@ -68,6 +71,7 @@ public class Entity{
     public String description="";
     public int useCost;
     public int price;
+    public int knockBackPower=0;
 
     //TIPOS
     public int type;
@@ -165,35 +169,58 @@ public class Entity{
     }
 
     public void update(){
-        setAction();
-        checkCollision();
-
-        if(!collisionOn){
-            switch(direction){
-                case "up": worldY-=speed; break;
-                case "down": worldY+=speed; break;
-                case "left": worldX-=speed; break;
-                case "right": worldX+=speed; break;
+        if(knockBack){
+            checkCollision();
+            if(collisionOn){
+                knockBackCounter=0;
+                knockBack=false;
+                speed=defaultSpeed;
+            }else{
+                switch(gp.player.direction){
+                    case "up": worldY-=speed; break;
+                    case "down": worldY+=speed; break;
+                    case "left": worldX-=speed; break;
+                    case "right": worldX+=speed; break;
+                }
             }
-        }
 
-        spriteCounter++;
-        if(spriteCounter>24){
-            if(spriteNum==1) spriteNum=2;
-            else if(spriteNum==2) spriteNum=1;
-            spriteCounter=0;
-        }
-
-        if(invincible){
-            invincibleCounter++;
-            if(invincibleCounter>40){
-                invincible=false;
-                invincibleCounter=0;
+            knockBackCounter++;
+            if(knockBackCounter==10){
+                knockBackCounter=0;
+                knockBack=false;
+                speed=defaultSpeed;
             }
-        }
+        }else{
+            setAction();
+            checkCollision();
 
-        if(shotAvailableCounter<30){
-            shotAvailableCounter++;
+            if(!collisionOn){
+                switch(direction){
+                    case "up": worldY-=speed; break;
+                    case "down": worldY+=speed; break;
+                    case "left": worldX-=speed; break;
+                    case "right": worldX+=speed; break;
+                }
+            }
+
+            spriteCounter++;
+            if(spriteCounter>24){
+                if(spriteNum==1) spriteNum=2;
+                else if(spriteNum==2) spriteNum=1;
+                spriteCounter=0;
+            }
+
+            if(invincible){
+                invincibleCounter++;
+                if(invincibleCounter>40){
+                    invincible=false;
+                    invincibleCounter=0;
+                }
+            }
+
+            if(shotAvailableCounter<30){
+                shotAvailableCounter++;
+            }
         }
     }
 
