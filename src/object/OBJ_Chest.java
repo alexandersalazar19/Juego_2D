@@ -36,11 +36,10 @@ public class OBJ_Chest extends Entity{
             StringBuilder sb=new StringBuilder();
             sb.append("Abriste el cofre y encontraste "+loot.name+".");
 
-            if(gp.player.inventory.size()==gp.player.maxInventorySize){
+            if(!gp.player.canObtainItem(loot)){
                 sb.append("\n...Pero tu inventario está lleno.");
             }else{
                 sb.append("\nObtuviste "+loot.name+".");
-                gp.player.inventory.add(loot);
                 down1=image2;
                 opened=true;
             }

@@ -369,6 +369,24 @@ public class UI{
             }
 
             g2.drawImage(entity.inventory.get(i).down1,slotX,slotY,null);
+
+            //DIBUJAR CANTIDAD
+            if(entity==gp.player && entity.inventory.get(i).amount>1){
+                g2.setFont(g2.getFont().deriveFont(32F));
+                int amountX;
+                int amountY;
+                String s=""+entity.inventory.get(i).amount;
+                amountX=getXForAlignToRightText(s,slotX+44);
+                amountY=slotY+gp.tileSize;
+
+                //SOMBRA
+                g2.setColor(new Color(60,60,60));
+                g2.drawString(s,amountX,amountY);
+                //NUMERO
+                g2.setColor(Color.WHITE);
+                g2.drawString(s,amountX-3,amountY-3);
+            }
+
             slotX+=slotSize;
             if(i==4 || i==9 || i==14){
                 slotX=slotXstart;
@@ -759,13 +777,14 @@ public class UI{
                     gp.gameState=gp.dialogueState;
                     currentDialogue="Necesitas más monedas para comprar esto.";
                     drawDialogueScreen();
-                }else if(gp.player.inventory.size()==gp.player.maxInventorySize){
-                    subState=0;
-                    gp.gameState=gp.dialogueState;
-                    currentDialogue="No puedes llevar más objetos.\nTu inventario está lleno.";
                 }else{
-                    gp.player.coin-=npc.inventory.get(itemIndex).price;
-                    gp.player.inventory.add(npc.inventory.get(itemIndex));
+                    if(gp.player.canObtainItem(npc.inventory.get(itemIndex))){
+                        gp.player.coin-=npc.inventory.get(itemIndex).price;
+                    }else{
+                        subState=0;
+                        gp.gameState=gp.dialogueState;
+                        currentDialogue="No puedes llevar más objetos.\nTu inventario está lleno.";
+                    }
                 }
             }
         }
@@ -818,7 +837,8 @@ public class UI{
                     gp.gameState=gp.dialogueState;
                     currentDialogue="No puedes vender objetos que tengas equipados.";
                 }else{
-                    gp.player.inventory.remove(itemIndex);
+                    if(gp.player.inventory.get(itemIndex).amount>1) gp.player.inventory.get(itemIndex).amount--;
+                    else gp.player.inventory.remove(itemIndex);
                     gp.player.coin+=price;
                 }
             }
