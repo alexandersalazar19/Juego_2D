@@ -15,7 +15,7 @@ public class AssetSetter{
     public void setObject(){
         int mapNum=0;
         int i=0;
-        gp.obj[mapNum][i]=new OBJ_Coin_Bronze(gp);
+        gp.obj[mapNum][i]=new OBJ_Tent(gp);
         gp.obj[mapNum][i].worldX=gp.tileSize*25;
         gp.obj[mapNum][i].worldY=gp.tileSize*23;
         i++;
