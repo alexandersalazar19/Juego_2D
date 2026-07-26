@@ -15,5 +15,7 @@ public class OBJ_Axe extends Entity{
         description="["+name+"]\nAlgo oxidada pero aún\ncorta algunos árboles.";
         price=75;
         knockBackPower=10;
+        motion1_duration=20;
+        motion2_duration=40;
     }
 }
