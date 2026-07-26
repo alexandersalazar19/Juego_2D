@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class UI{
     GamePanel gp;
     Graphics2D g2;
-    Font maruMonica,purisaB;
+    public Font maruMonica,purisaB;
     BufferedImage heart_full,heart_half,heart_blank,crystal_full,crystal_blank,coin;
     public boolean messageOn=false;
     ArrayList<String> message=new ArrayList<>();
@@ -604,22 +604,26 @@ public class UI{
         g2.drawString(text,textX,textY);
 
         textX=frameX+gp.tileSize;
-        textY+=gp.tileSize;
-        g2.drawString("Moverse",textX,textY); textY+=gp.tileSize;
-        g2.drawString("Confirmar/Atacar",textX,textY); textY+=gp.tileSize;
-        g2.drawString("Disparar/Usar",textX,textY); textY+=gp.tileSize;
-        g2.drawString("Inventario",textX,textY); textY+=gp.tileSize;
-        g2.drawString("Pausa",textX,textY); textY+=gp.tileSize;
-        g2.drawString("Opciones",textX,textY); textY+=gp.tileSize;
+        textY+=gp.tileSize-10;
+        g2.drawString("Moverse",textX,textY); textY+=gp.tileSize-10;
+        g2.drawString("Atacar/Confirmar",textX,textY); textY+=gp.tileSize-10;
+        g2.drawString("Disparar",textX,textY); textY+=gp.tileSize-10;
+        g2.drawString("Inventario",textX,textY); textY+=gp.tileSize-10;
+        g2.drawString("Mapa",textX,textY); textY+=gp.tileSize-10;
+        g2.drawString("Mini Mapa",textX,textY); textY+=gp.tileSize-10;
+        g2.drawString("Pausa",textX,textY); textY+=gp.tileSize-10;
+        g2.drawString("Opciones",textX,textY); textY+=gp.tileSize-10;
 
-        textX=frameX+gp.tileSize*6;
-        textY=frameY+gp.tileSize*2;
-        g2.drawString("WASD",textX,textY); textY+=gp.tileSize;
-        g2.drawString("ENTER",textX,textY); textY+=gp.tileSize;
-        g2.drawString("ESPACIO",textX,textY); textY+=gp.tileSize;
-        g2.drawString("E",textX,textY); textY+=gp.tileSize;
-        g2.drawString("P",textX,textY); textY+=gp.tileSize;
-        g2.drawString("ESC",textX,textY); textY+=gp.tileSize;
+        textX=frameX+gp.tileSize*6-10;
+        textY=frameY+gp.tileSize*2-10;
+        g2.drawString("WASD",textX,textY); textY+=gp.tileSize-10;
+        g2.drawString("ENTER",textX,textY); textY+=gp.tileSize-10;
+        g2.drawString("ESPACIO",textX,textY); textY+=gp.tileSize-10;
+        g2.drawString("E",textX,textY); textY+=gp.tileSize-10;
+        g2.drawString("M",textX,textY); textY+=gp.tileSize-10;
+        g2.drawString("I",textX,textY); textY+=gp.tileSize-10;
+        g2.drawString("P",textX,textY); textY+=gp.tileSize-10;
+        g2.drawString("ESC",textX,textY); textY+=gp.tileSize-10;
 
         //VOLVER
         textX=frameX+gp.tileSize;
