@@ -3,7 +3,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener{
-    public boolean upPressed,downPressed,leftPressed,rightPressed,enterPressed,shotKeyPressed;
+    public boolean upPressed,downPressed,leftPressed,rightPressed,enterPressed,shotKeyPressed,shiftPressed;
     //DEBUG
     boolean showDebugText=false;
     GamePanel gp;
@@ -99,6 +99,9 @@ public class KeyHandler implements KeyListener{
         }
         if(code==KeyEvent.VK_I){
             gp.map.miniMapOn=!gp.map.miniMapOn;
+        }
+        if(code==KeyEvent.VK_SHIFT){
+            shiftPressed=true;
         }
         //DEBUG
         if(code==KeyEvent.VK_T){
@@ -318,6 +321,12 @@ public class KeyHandler implements KeyListener{
         }
         if(code==KeyEvent.VK_SPACE){
             shotKeyPressed=false;
+        }
+        if(code==KeyEvent.VK_ENTER){
+            enterPressed=false;
+        }
+        if(code==KeyEvent.VK_SHIFT){
+            shiftPressed=false;
         }
     }
 }

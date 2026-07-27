@@ -111,7 +111,7 @@ public class GamePanel extends JPanel implements Runnable{
     public void restart(){
         player.setDefaultValues();
         player.setItems();
-        player.getPlayerAttackImage();
+        player.getAttackImage();
         player.invincible=false;
         aSetter.setObject();
         aSetter.setNPC();

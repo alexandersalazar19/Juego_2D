@@ -608,6 +608,7 @@ public class UI{
         g2.drawString("Moverse",textX,textY); textY+=gp.tileSize-10;
         g2.drawString("Atacar/Confirmar",textX,textY); textY+=gp.tileSize-10;
         g2.drawString("Disparar",textX,textY); textY+=gp.tileSize-10;
+        g2.drawString("Bloquear",textX,textY); textY+=gp.tileSize-10;
         g2.drawString("Inventario",textX,textY); textY+=gp.tileSize-10;
         g2.drawString("Mapa",textX,textY); textY+=gp.tileSize-10;
         g2.drawString("Mini Mapa",textX,textY); textY+=gp.tileSize-10;
@@ -619,6 +620,7 @@ public class UI{
         g2.drawString("WASD",textX,textY); textY+=gp.tileSize-10;
         g2.drawString("ENTER",textX,textY); textY+=gp.tileSize-10;
         g2.drawString("ESPACIO",textX,textY); textY+=gp.tileSize-10;
+        g2.drawString("SHIFT",textX,textY); textY+=gp.tileSize-10;
         g2.drawString("E",textX,textY); textY+=gp.tileSize-10;
         g2.drawString("M",textX,textY); textY+=gp.tileSize-10;
         g2.drawString("I",textX,textY); textY+=gp.tileSize-10;
@@ -868,7 +870,7 @@ public class UI{
                 gp.eManager.lighting.dayState=gp.eManager.lighting.day;
                 gp.eManager.lighting.dayCounter=0;
                 gp.gameState=gp.playState;
-                gp.player.getPlayerImage();
+                gp.player.getImage();
             }
         }
     }
