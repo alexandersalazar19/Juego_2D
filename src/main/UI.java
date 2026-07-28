@@ -531,7 +531,7 @@ public class UI{
 
         //TERMINAR JUEGO
         textY+=gp.tileSize;
-        g2.drawString("Salir",textX,textY);
+        g2.drawString("Salir del Juego",textX,textY);
         if(commandNum==4){
             g2.drawString(">",textX-25,textY);
             if(gp.keyH.enterPressed){
@@ -644,7 +644,7 @@ public class UI{
         int textX=frameX+gp.tileSize;
         int textY=frameY+gp.tileSize*3;
 
-        currentDialogue="¿Salir del juego y volver a\nla pantalla de título?";
+        currentDialogue="¿Seguro que quiere salir\ndel juego y volver a la\npantalla de título?";
         for(String line:currentDialogue.split("\n")){
             g2.drawString(line,textX,textY);
             textY+=40;
@@ -660,6 +660,7 @@ public class UI{
             if(gp.keyH.enterPressed){
                 subState=0;
                 gp.gameState=gp.titleState;
+                gp.resetGame(true);
             }
         }
 
