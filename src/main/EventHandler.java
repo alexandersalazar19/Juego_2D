@@ -95,10 +95,11 @@ public class EventHandler{
             gp.gameState=gameState;
             gp.player.attackCanceled=true;
             gp.playSE(2);
-            gp.ui.currentDialogue="Tomaste agua sagrada.\nTu vida y mana han sido recuperados.";
+            gp.ui.currentDialogue="Tomaste agua sagrada.\nTu vida y mana han sido recuperados.\nTu partida ha sido guardada.";
             gp.player.life=gp.player.maxLife;
             gp.player.mana=gp.player.maxMana;
             gp.aSetter.setMonster();
+            gp.saveLoad.save();
         }
     }
 

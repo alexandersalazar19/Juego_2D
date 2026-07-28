@@ -37,6 +37,8 @@ public class Entity{
     public boolean guarding=false;
     public boolean transparent=false;
     public boolean offBalance=false;
+    public Entity loot;
+    public boolean opened=false;
 
     //CONTADORES
     public int spriteCounter=0;
@@ -74,7 +76,7 @@ public class Entity{
     public Projectile projectile;
 
     //ATRIBUTOS DE ITEMS
-    public ArrayList<Entity> inventory=new ArrayList<Entity>();
+    public ArrayList<Entity> inventory=new ArrayList<>();
     public final int maxInventorySize=20;
     public int value;
     public int attackValue;
@@ -111,10 +113,12 @@ public class Entity{
     public int getCol(){return (worldX+solidArea.x)/gp.tileSize;}
     public int getRow(){return (worldY+solidArea.y)/gp.tileSize;}
     public int getXDistance(Entity target){return Math.abs(worldX-target.worldX);}
-    public int getYDistance(Entity target){return Math.abs(worldY-gp.player.worldY);}
+    public int getYDistance(Entity target){return Math.abs(worldY-target.worldY);}
     public int getTileDistance(Entity target){return (getXDistance(target)+getYDistance(target))/gp.tileSize;}
     public int getGoalCol(Entity target){return (target.worldX+target.solidArea.x)/gp.tileSize;}
     public int getGoalRow(Entity target){return (target.worldY+target.solidArea.y)/gp.tileSize;}
+
+    public void setLoot(Entity loot){}
 
     public void setAction(){}
 
