@@ -1,8 +1,5 @@
 package main;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.FloatControl;
+import javax.sound.sampled.*;
 import java.net.URL;
 
 public class Sound{
@@ -34,12 +31,22 @@ public class Sound{
     }
 
     public void setFile(int i){
-        try{
-            AudioInputStream sis=AudioSystem.getAudioInputStream(soundURL[i]);
-            clip=AudioSystem.getClip();
-            clip.open(sis);
-            fc=(FloatControl)clip.getControl(FloatControl.Type.MASTER_GAIN);
-            checkVolume();
+        try(AudioInputStream sis=AudioSystem.getAudioInputStream(soundURL[i])){
+            //crear un clip para cada nuevo sonido
+            Clip newClip=AudioSystem.getClip();
+            newClip.open(sis);
+
+            //cerrar el clip una vez que termine de reproducirse asi no saturamos la libreria
+            newClip.addLineListener(event->{
+                if(event.getType()==LineEvent.Type.STOP) newClip.close();
+            });
+
+            //recuperarlo para poder cambiar el volumen si se necesita
+            clip=newClip;
+            if(clip.isControlSupported(FloatControl.Type.MASTER_GAIN)){
+                fc=(FloatControl)clip.getControl(FloatControl.Type.MASTER_GAIN);
+                checkVolume();
+            }
         }catch(Exception e){
             e.printStackTrace();
         }
