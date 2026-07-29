@@ -13,10 +13,12 @@ public class NPC_OldMan extends Entity{
         solidArea=new Rectangle();
         solidArea.x=8;
         solidArea.y=16;
-        solidArea.width=32;
-        solidArea.height=32;
+        solidArea.width=30;
+        solidArea.height=30;
         solidAreaDefaultX=solidArea.x;
         solidAreaDefaultY=solidArea.y;
+
+        dialogueSet=-1;
 
         getImage();
         setDialogue();
@@ -34,10 +36,15 @@ public class NPC_OldMan extends Entity{
     }
 
     public void setDialogue(){
-        dialogues[0]="¡Hola!";
-        dialogues[1]="¿Así que vienes a esta isla a encontrar\nel tesoro?";
-        dialogues[2]="Solía ser un gran mago, pero ahora...\nEstoy un poco viejo para más aventuras.";
-        dialogues[3]="Como sea, ¡buena suerte en la tuya!";
+        dialogues[0][0]="¡Hola!";
+        dialogues[0][1]="¿Así que vienes a esta isla a encontrar\nel tesoro?";
+        dialogues[0][2]="Solía ser un gran mago, pero ahora...\nEstoy un poco viejo para más aventuras.";
+        dialogues[0][3]="Como sea, ¡buena suerte en la tuya!";
+
+        dialogues[1][0]="Si te sientes cansado o sediento, puedes beber\nagua del lago.\nHe escuchado que esa agua tiene poderes\nsanadores.";
+        dialogues[1][1]="También dicen que si tomas de esa agua, los\nmountruos revivirán, así que hazlo bajo tu propio\nriesgo.";
+
+        dialogues[2][0]="75 años y aún no sé cómo abrir esa puerta.\nMe pregunto, ¿Que habrá detrás?";
     }
 
     public void setAction(){
@@ -71,7 +78,10 @@ public class NPC_OldMan extends Entity{
     }
 
     public void speak(){
-        super.speak();
-        onPath=true;
+        facePlayer();
+        startDialogue(this,dialogueSet);
+        dialogueSet++;
+        if(dialogues[dialogueSet][0]==null) dialogueSet--;
+        //onPath=true;
     }
 }

@@ -1,10 +1,10 @@
 package main;
-
 import entity.Entity;
 
 public class EventHandler{
     GamePanel gp;
     EventRect eventRect[][][];
+    Entity eventMaster;
 
     int previousEventX,previousEventY;
     boolean canTouchEvent=true;
@@ -12,6 +12,7 @@ public class EventHandler{
 
     public EventHandler(GamePanel gp){
         this.gp=gp;
+        eventMaster=new Entity(gp);
         eventRect=new EventRect[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow];
 
         int map=0;
@@ -37,6 +38,12 @@ public class EventHandler{
                 }
             }
         }
+        setDialogue();
+    }
+
+    public void setDialogue(){
+        eventMaster.dialogues[0][0]="Caiste en un pozo de daño.";
+        eventMaster.dialogues[1][0]="Tomaste agua sagrada.\nTu vida y mana han sido recuperados.\nTu partida ha sido guardada.";
     }
 
     public void checkEvent(){
@@ -85,7 +92,7 @@ public class EventHandler{
     public void damagePit(int gameState){
         gp.gameState=gameState;
         gp.playSE(6);
-        gp.ui.currentDialogue="Caiste en un pozo de daño.";
+        eventMaster.startDialogue(eventMaster,0);
         gp.player.life--;
         canTouchEvent=false;
     }
@@ -95,7 +102,7 @@ public class EventHandler{
             gp.gameState=gameState;
             gp.player.attackCanceled=true;
             gp.playSE(2);
-            gp.ui.currentDialogue="Tomaste agua sagrada.\nTu vida y mana han sido recuperados.\nTu partida ha sido guardada.";
+            eventMaster.startDialogue(eventMaster,1);
             gp.player.life=gp.player.maxLife;
             gp.player.mana=gp.player.maxMana;
             gp.aSetter.setMonster();

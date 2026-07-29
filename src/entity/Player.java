@@ -72,6 +72,10 @@ public class Player extends Entity{
         direction="down";
     }
 
+    public void setDialogue(){
+        dialogues[0][0]="¡Subiste de nivel!\nAhora eres nivel "+level+".\nTe sientes más fuerte.";
+    }
+
     public void restoreStatus(){
         life=maxLife;
         mana=maxMana;
@@ -346,7 +350,6 @@ public class Player extends Entity{
         if(gp.keyH.enterPressed){
             if(i!=999){
                 attackCanceled=true;
-                gp.gameState=gp.dialogueState;
                 gp.npc[gp.currentMap][i].speak();
             }
         }
@@ -431,7 +434,8 @@ public class Player extends Entity{
 
             gp.playSE(8);
             gp.gameState=gp.dialogueState;
-            gp.ui.currentDialogue="¡Subiste de nivel!\nAhora eres nivel "+level+".\nTe sientes más fuerte.";
+            setDialogue();
+            startDialogue(this,0);
         }
     }
 

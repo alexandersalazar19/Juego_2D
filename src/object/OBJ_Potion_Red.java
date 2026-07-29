@@ -16,11 +16,16 @@ public class OBJ_Potion_Red extends Entity{
         description="["+name+"]\nRestaura "+value+" puntos de tu\nvida.";
         price=25;
         stackable=true;
+
+        setDialogue();
+    }
+
+    public void setDialogue(){
+        dialogues[0][0]="¡Tomaste una "+name+"!\nHas recuperado "+value+" puntos de tu vida.";
     }
 
     public boolean use(Entity entity){
-        gp.gameState=gp.dialogueState;
-        gp.ui.currentDialogue="¡Tomaste una "+name+"!\nHas recuperado "+value+" puntos de tu vida.";
+        startDialogue(this,0);
         entity.life+=value;
         gp.playSE(2);
         return true;

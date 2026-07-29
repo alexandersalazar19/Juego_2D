@@ -30,11 +30,12 @@ public class Sound{
         soundURL[14]=getClass().getResource("/sound/sleep.wav");
         soundURL[15]=getClass().getResource("/sound/blocked.wav");
         soundURL[16]=getClass().getResource("/sound/parry.wav");
+        soundURL[17]=getClass().getResource("/sound/speak.wav");
     }
 
     public void setFile(int i){
         try{
-            AudioInputStream sis= AudioSystem.getAudioInputStream(soundURL[i]);
+            AudioInputStream sis=AudioSystem.getAudioInputStream(soundURL[i]);
             clip=AudioSystem.getClip();
             clip.open(sis);
             fc=(FloatControl)clip.getControl(FloatControl.Type.MASTER_GAIN);
