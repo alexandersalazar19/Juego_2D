@@ -4,13 +4,14 @@ import main.GamePanel;
 
 public class OBJ_Coin_Bronze extends Entity{
     GamePanel gp;
+    public static final String objName="Moneda de Bronze";
 
     public OBJ_Coin_Bronze(GamePanel gp){
         super(gp);
         this.gp=gp;
 
         type=type_pickUpOnly;
-        name="Moneda de Bronze";
+        name=objName;
         value=1;
         down1=setup("/objects/coin_bronze",gp.tileSize,gp.tileSize);
     }

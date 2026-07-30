@@ -12,28 +12,6 @@ public class SaveLoad{
         this.gp=gp;
     }
 
-    public Entity getObject(String itemName){
-        Entity obj=null;
-        switch(itemName){
-            case "Hacha": obj=new OBJ_Axe(gp); break;
-            case "Botas": obj=new OBJ_Boots(gp); break;
-            case "Llave": obj=new OBJ_Key(gp); break;
-            case "Linterna": obj=new OBJ_Lantern(gp); break;
-            case "Poción Roja": obj=new OBJ_Potion_Red(gp); break;
-            case "Escudo Azul": obj=new OBJ_Shield_Blue(gp); break;
-            case "Escudo de Madera": obj=new OBJ_Shield_Wood(gp); break;
-            case "Espada Normal": obj=new OBJ_Sword_Normal(gp); break;
-            case "Tienda de Acampar": obj=new OBJ_Tent(gp); break;
-            case "Puerta": obj=new OBJ_Door(gp); break;
-            case "Cofre": obj=new OBJ_Chest(gp); break;
-            case "Corazón": obj=new OBJ_Heart(gp); break;
-            case "Cristal de Maná": obj=new OBJ_ManaCrystal(gp); break;
-
-            default: System.out.println("Objeto desconocido: "+itemName);
-        }
-        return obj;
-    }
-
     public void save(){
         try{
             ObjectOutputStream oos=new ObjectOutputStream(new FileOutputStream(new File("save.dat")));
@@ -107,7 +85,7 @@ public class SaveLoad{
             //inventario del jugador
             gp.player.inventory.clear();
             for(int i=0;i<ds.itemNames.size();i++){
-                gp.player.inventory.add(getObject(ds.itemNames.get(i)));
+                gp.player.inventory.add(gp.eGenerator.getObject(ds.itemNames.get(i)));
                 gp.player.inventory.get(i).amount=ds.itemAmounts.get(i);
             }
             //items equipados del jugador
@@ -123,10 +101,10 @@ public class SaveLoad{
                     if(ds.mapObjectNames[mapNum][i].equals("NA")){
                         gp.obj[mapNum][i]=null;
                     }else{
-                        gp.obj[mapNum][i]=getObject(ds.mapObjectNames[mapNum][i]);
+                        gp.obj[mapNum][i]=gp.eGenerator.getObject(ds.mapObjectNames[mapNum][i]);
                         gp.obj[mapNum][i].worldX=ds.mapObjectWorldX[mapNum][i];
                         gp.obj[mapNum][i].worldY=ds.mapObjectWorldY[mapNum][i];
-                        if(ds.mapObjectLootNames[mapNum][i]!=null) gp.obj[mapNum][i].loot=getObject(ds.mapObjectLootNames[mapNum][i]);
+                        if(ds.mapObjectLootNames[mapNum][i]!=null) gp.obj[mapNum][i].loot=gp.eGenerator.getObject(ds.mapObjectLootNames[mapNum][i]);
                         gp.obj[mapNum][i].opened=ds.mapObjectOpened[mapNum][i];
                         if(gp.obj[mapNum][i].opened) gp.obj[mapNum][i].down1=gp.obj[mapNum][i].image2;
                     }

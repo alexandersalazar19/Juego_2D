@@ -123,13 +123,14 @@ public class Lighting{
         //DEBUG
         String situation="";
         switch(dayState){
-            case day: situation="Day"; break;
-            case dusk: situation="Dusk"; break;
-            case night: situation="Night"; break;
-            case dawn: situation="Dawn"; break;
+            case day: situation="Día"; break;
+            case dusk: situation="Anochecer"; break;
+            case night: situation="Noche"; break;
+            case dawn: situation="Amanecer"; break;
         }
         g2.setColor(Color.WHITE);
         g2.setFont(g2.getFont().deriveFont(50F));
-        g2.drawString(situation,800,500);
+        int x=gp.ui.getXForAlignToRightText(situation,930);
+        g2.drawString(situation,x,546);
     }
 }

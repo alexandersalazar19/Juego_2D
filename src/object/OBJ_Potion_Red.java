@@ -4,13 +4,14 @@ import main.GamePanel;
 
 public class OBJ_Potion_Red extends Entity{
     GamePanel gp;
+    public static final String objName="Poción Roja";
 
     public OBJ_Potion_Red(GamePanel gp){
         super(gp);
         this.gp=gp;
 
         type=type_consumable;
-        name="Poción Roja";
+        name=objName;
         value=5;
         down1=setup("/objects/potion_red",gp.tileSize,gp.tileSize);
         description="["+name+"]\nRestaura "+value+" puntos de tu\nvida.";

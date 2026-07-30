@@ -4,13 +4,14 @@ import main.GamePanel;
 
 public class OBJ_ManaCrystal extends Entity{
     GamePanel gp;
+    public static final String objName="Cristal de Maná";
 
     public OBJ_ManaCrystal(GamePanel gp){
         super(gp);
         this.gp=gp;
 
         type=type_pickUpOnly;
-        name="Cristal de Maná";
+        name=objName;
         value=1;
         down1=setup("/objects/manacrystal_full",gp.tileSize,gp.tileSize);
         image=setup("/objects/manacrystal_full",gp.tileSize,gp.tileSize);
