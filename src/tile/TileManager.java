@@ -21,11 +21,13 @@ public class TileManager{
         getTileImage();
         loadMap("/maps/map04.txt",0);
         loadMap("/maps/interior01.txt",1);
+        loadMap("/maps/dungeon01.txt",2);
+        loadMap("/maps/dungeon02.txt",3);
     }
 
     public void getTileImage(){
         //RELLENO
-        setup(0,"grass00",false);
+        setup(0,"void",false);
         setup(1,"grass00",false);
         setup(2,"grass00",false);
         setup(3,"grass00",false);
@@ -78,6 +80,8 @@ public class TileManager{
         setup(42,"hut",false);
         setup(43,"floor01",false);
         setup(44,"table01",true);
+        setup(45,"stairsup",false);
+        setup(46,"stairsdown",false);
     }
 
     public void setup(int index,String imageName,boolean collision){

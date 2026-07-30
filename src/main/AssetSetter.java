@@ -1,10 +1,8 @@
 package main;
-import entity.NPC_Merchant;
-import entity.NPC_OldMan;
-import monster.MON_GreenSlime;
-import monster.MON_Orc;
+import entity.*;
+import monster.*;
 import object.*;
-import tile_interactive.IT_DryTree;
+import tile_interactive.*;
 
 public class AssetSetter{
     GamePanel gp;
@@ -34,16 +32,6 @@ public class AssetSetter{
         gp.obj[mapNum][i]=new OBJ_Axe(gp);
         gp.obj[mapNum][i].worldX=gp.tileSize*26;
         gp.obj[mapNum][i].worldY=gp.tileSize*21;
-        i++;
-
-//        gp.obj[mapNum][i]=new OBJ_Axe(gp);
-//        gp.obj[mapNum][i].worldX=gp.tileSize*33;
-//        gp.obj[mapNum][i].worldY=gp.tileSize*7;
-//        i++;
-
-        gp.obj[mapNum][i]=new OBJ_Shield_Blue(gp);
-        gp.obj[mapNum][i].worldX=gp.tileSize*12;
-        gp.obj[mapNum][i].worldY=gp.tileSize*9;
         i++;
 
         gp.obj[mapNum][i]=new OBJ_Potion_Red(gp);
@@ -142,6 +130,16 @@ public class AssetSetter{
         gp.monster[mapNum][i]=new MON_Orc(gp);
         gp.monster[mapNum][i].worldX=gp.tileSize*12;
         gp.monster[mapNum][i].worldY=gp.tileSize*33;
+        i++;
+
+        gp.monster[mapNum][i]=new MON_RedSlime(gp);
+        gp.monster[mapNum][i].worldX=gp.tileSize*35;
+        gp.monster[mapNum][i].worldY=gp.tileSize*9;
+        i++;
+
+        gp.monster[mapNum][i]=new MON_RedSlime(gp);
+        gp.monster[mapNum][i].worldX=gp.tileSize*40;
+        gp.monster[mapNum][i].worldY=gp.tileSize*8;
         i++;
     }
 
