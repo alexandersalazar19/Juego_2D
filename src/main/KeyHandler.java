@@ -3,10 +3,11 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener{
+    GamePanel gp;
     public boolean upPressed,downPressed,leftPressed,rightPressed,enterPressed,shotKeyPressed,shiftPressed;
     //DEBUG
     boolean showDebugText=false;
-    GamePanel gp;
+    public boolean godModeOn=false;
 
     public KeyHandler(GamePanel gp){
         this.gp=gp;
@@ -116,6 +117,9 @@ public class KeyHandler implements KeyListener{
                 case 0: gp.tileM.loadMap("/maps/map04.txt",0); break;
                 case 1: gp.tileM.loadMap("/maps/interior01.txt",1); break;
             }
+        }
+        if(code==KeyEvent.VK_G){
+            godModeOn=!godModeOn;
         }
     }
 

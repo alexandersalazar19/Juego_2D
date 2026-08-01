@@ -69,7 +69,7 @@ public class MON_Orc extends Entity {
             searchPath(getGoalCol(gp.player),getGoalRow(gp.player));
         }else{
             checkStartChasingOrNot(gp.player,5,100);
-            getRandomDirection();
+            getRandomDirection(120);
         }
 
         if(!attacking) checkAttackOrNot(30,gp.tileSize*4,gp.tileSize);

@@ -187,6 +187,40 @@ public class AssetSetter{
         gp.monster[mapNum][i].worldX=gp.tileSize*40;
         gp.monster[mapNum][i].worldY=gp.tileSize*8;
         i++;
+
+        mapNum=2;
+        i=0;
+        gp.monster[mapNum][i]=new MON_Bat(gp);
+        gp.monster[mapNum][i].worldX=gp.tileSize*34;
+        gp.monster[mapNum][i].worldY=gp.tileSize*39;
+        i++;
+
+        gp.monster[mapNum][i]=new MON_Bat(gp);
+        gp.monster[mapNum][i].worldX=gp.tileSize*36;
+        gp.monster[mapNum][i].worldY=gp.tileSize*25;
+        i++;
+
+        gp.monster[mapNum][i]=new MON_Bat(gp);
+        gp.monster[mapNum][i].worldX=gp.tileSize*39;
+        gp.monster[mapNum][i].worldY=gp.tileSize*26;
+        i++;
+
+        gp.monster[mapNum][i]=new MON_Bat(gp);
+        gp.monster[mapNum][i].worldX=gp.tileSize*28;
+        gp.monster[mapNum][i].worldY=gp.tileSize*11;
+        i++;
+
+        gp.monster[mapNum][i]=new MON_Bat(gp);
+        gp.monster[mapNum][i].worldX=gp.tileSize*10;
+        gp.monster[mapNum][i].worldY=gp.tileSize*19;
+        i++;
+
+        mapNum=3;
+        i=0;
+        gp.monster[mapNum][i]=new MON_SkeletonLord(gp);
+        gp.monster[mapNum][i].worldX=gp.tileSize*23;
+        gp.monster[mapNum][i].worldY=gp.tileSize*16;
+        i++;
     }
 
     public void setInteractiveTile(){

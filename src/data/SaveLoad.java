@@ -1,8 +1,6 @@
 package data;
-import entity.Entity;
 import main.GamePanel;
 import object.*;
-
 import java.io.*;
 
 public class SaveLoad{
@@ -104,14 +102,13 @@ public class SaveLoad{
                         gp.obj[mapNum][i]=gp.eGenerator.getObject(ds.mapObjectNames[mapNum][i]);
                         gp.obj[mapNum][i].worldX=ds.mapObjectWorldX[mapNum][i];
                         gp.obj[mapNum][i].worldY=ds.mapObjectWorldY[mapNum][i];
-                        if(ds.mapObjectLootNames[mapNum][i]!=null) gp.obj[mapNum][i].loot=gp.eGenerator.getObject(ds.mapObjectLootNames[mapNum][i]);
+                        if(ds.mapObjectLootNames[mapNum][i]!=null) gp.obj[mapNum][i].setLoot(gp.eGenerator.getObject(ds.mapObjectLootNames[mapNum][i]));
                         gp.obj[mapNum][i].opened=ds.mapObjectOpened[mapNum][i];
                         if(gp.obj[mapNum][i].opened) gp.obj[mapNum][i].down1=gp.obj[mapNum][i].image2;
                     }
                 }
             }
         }catch(Exception e){
-            e.printStackTrace();
             System.out.println("Error al cargar datos");
         }
     }

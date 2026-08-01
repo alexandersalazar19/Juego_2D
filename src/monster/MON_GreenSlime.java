@@ -52,7 +52,7 @@ public class MON_GreenSlime extends Entity{
             searchPath(getGoalCol(gp.player),getGoalRow(gp.player));
         }else{
             checkStartChasingOrNot(gp.player,5,100);
-            getRandomDirection();
+            getRandomDirection(120);
         }
     }
 
