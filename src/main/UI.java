@@ -173,7 +173,7 @@ public class UI{
 
         //TITULO
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,96F));
-        String text="2D Game";
+        String text="Juego 2D";
         int x=getXForCenteredText(text);
         int y=gp.tileSize*3;
         //SOMBRA

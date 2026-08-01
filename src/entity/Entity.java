@@ -19,6 +19,7 @@ public class Entity{
     public boolean collisionOn=false;
     public String dialogues[][]=new String[20][20];
     public Entity attacker;
+    public Entity linkedEntity;
 
     //ESTADO
     public int worldX,worldY;
@@ -102,6 +103,7 @@ public class Entity{
     public final int type_pickUpOnly=7;
     public final int type_obstacle=8;
     public final int type_light=9;
+    public final int type_pickaxe=10;
 
     public Entity(GamePanel gp){
         this.gp=gp;
@@ -134,6 +136,8 @@ public class Entity{
     public void setLoot(Entity loot){}
 
     public void setAction(){}
+
+    public void move(String direction){}
 
     public void damageReaction(){}
 
