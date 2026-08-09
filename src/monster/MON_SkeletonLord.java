@@ -1,7 +1,9 @@
 package monster;
+import data.Progress;
 import entity.Entity;
 import main.GamePanel;
 import object.OBJ_Coin_Bronze;
+import object.OBJ_Door_Iron;
 import object.OBJ_Heart;
 import object.OBJ_ManaCrystal;
 import java.util.Random;
@@ -25,6 +27,7 @@ public class MON_SkeletonLord extends Entity{
         defense=2;
         exp=50;
         knockBackPower=5;
+        sleep=true;
 
         int size=gp.tileSize*5;
         solidArea.x=48;
@@ -40,6 +43,7 @@ public class MON_SkeletonLord extends Entity{
 
         getImage();
         getAttackImage();
+        setDialogue();
     }
 
     public void getImage(){
@@ -90,6 +94,12 @@ public class MON_SkeletonLord extends Entity{
         }
     }
 
+    public void setDialogue(){
+        dialogues[0][0]="¡Nadie puede robar mi tesoro!";
+        dialogues[0][1]="Vas a morir aquí.";
+        dialogues[0][2]="¡¡¡BIENVENIDO A TU TUMBA!!!";
+    }
+
     public void setAction(){
         if(!inRage && life<maxLife/2){
             inRage=true;
@@ -114,6 +124,18 @@ public class MON_SkeletonLord extends Entity{
     }
 
     public void checkDrop(){
+        gp.bossBattleOn=false;
+        Progress.skeletonLordDefeated=true;
+        gp.stopMusic();
+        gp.playMusic(19);
+
+        for(int i=0;i<gp.obj[1].length;i++){
+            if(gp.obj[gp.currentMap][i]!=null && gp.obj[gp.currentMap][i].name.equals(OBJ_Door_Iron.objName)){
+                gp.playSE(21);
+                gp.obj[gp.currentMap][i]=null;
+            }
+        }
+
         int i=new Random().nextInt(100)+1;
         if(i<50) dropItem(new OBJ_Coin_Bronze(gp));
         if(i>=50 && i<75) dropItem(new OBJ_Heart(gp));

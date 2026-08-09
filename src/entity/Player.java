@@ -34,9 +34,9 @@ public class Player extends Entity{
     public void setDefaultValues(){
         worldX=gp.tileSize*23;
         worldY=gp.tileSize*21;
-//        gp.currentMap=2;
-//        worldX=gp.tileSize*10;
-//        worldY=gp.tileSize*41;
+//        gp.currentMap=3;
+//        worldX=gp.tileSize*26;
+//        worldY=gp.tileSize*40;
         defaultSpeed=4;
         speed=defaultSpeed;
         direction="down";
@@ -572,7 +572,9 @@ public class Player extends Entity{
         if(transparent){
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,0.4F));
         }
-        g2.drawImage(image,tempScreenX,tempScreenY,null);
+        if(drawing){
+            g2.drawImage(image,tempScreenX,tempScreenY,null);
+        }
 
         //RESETEAR ALFA
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,1F));
