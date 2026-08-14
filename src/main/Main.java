@@ -8,7 +8,8 @@ public class Main{
         window=new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
-        window.setTitle("2D Game");
+        window.setTitle("Juego 2D");
+        new Main().setIcon();
 
         GamePanel gamePanel=new GamePanel();
         window.add(gamePanel);
@@ -23,5 +24,10 @@ public class Main{
 
         gamePanel.setUpGame();
         gamePanel.startGameThread();
+    }
+
+    public void setIcon(){
+        ImageIcon icon=new ImageIcon(getClass().getClassLoader().getResource("player/boy_down_1.png"));
+        window.setIconImage(icon.getImage());
     }
 }
